@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# The archive holds the model code and the CSV data only (config/, data/external/,
+# src/bescl/, scripts/, tests/, results/tables/). Manuscript production is local:
+# paper/ = figure, SI-table, submission-text and Word-rendering scripts;
+# manuscript/ = Markdown sources; submission/ = rendered .txt/.docx;
+# results/figures/ = figures drawn from results/tables/*.csv.
+paper/
+make_paper.py
+manuscript/
+submission/
+results/figures/

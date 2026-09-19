@@ -1,0 +1,11 @@
+item,group,usd_per_m2,life_yr,kg_per_m2,gwp_kg_co2e_per_kg,note
+membrane_cem,stack,100.0,5,0.4725,2.3219,"heterogeneous CEM, e.g. CMI-7000 class"
+anode_carbon_felt,stack,40.0,10,0.2,25.0,
+frames_spacers_gaskets,stack,80.0,20,4.0,2.3815,
+power_electronics,stack,20.0,15,0.1,20.0,
+tanks_piping_pumps,stack,50.0,20,3.0,1.9,
+ss_mesh,cathode,50.0,10,1.0,4.5,stainless steel / nickel mesh for hydrogen evolution
+gde_carbon,cathode,150.0,5,0.5,30.0,"carbon-PTFE gas-diffusion electrode, O2 -> H2O2"
+gde_catalyst,cathode,300.0,5,0.6,40.0,Sn/Bi or Ag catalysed GDE for CO2 reduction
+biocathode_felt,cathode,40.0,10,0.2,25.0,"carbon felt biocathode (methanogens, acetogens)"
+metal_plate,cathode,80.0,20,2.0,5.0,"stainless/titanium blank for electrodeposition, stripped periodically"

@@ -1,0 +1,26 @@
+# Standard downstream-processing (DSP) unit models. Product-specific parameters
+# live in products.yaml; the shared engineering constants live here.
+
+evaporation:
+  mode: mee                              # mee = steam-driven multiple-effect; mvr = mechanical vapour recompression
+  mee_steam_MJ_per_kg_water: 0.80        # 3 effects, steam economy ~2.9 kg water per kg steam at 2.3 MJ/kg
+  mee_electricity_kWh_per_kg_water: 0.010
+  mvr_electricity_kWh_per_kg_water: 0.035
+
+distillation:
+  water_cp_kJ_per_kg_K: 4.18
+
+acidification:
+  h2so4_usd_per_kg: 0.10
+  h2so4_kg_co2e_per_kg: 0.13
+  note: "sulfate by-product disposal not costed"
+
+solid_metal:
+  note: "harvesting, remelting/casting and refining charge; electricity for melting and electrorefining"
+
+gas:
+  note: "compression and purification; product loss = 1 - recovery"
+
+capex:
+  fixed_opex_fraction: 0.03              # of DSP installed cost, per year
+  embodied_gwp_kg_co2e_per_usd: 0.0      # equipment embodied burden neglected (SI Section S4)

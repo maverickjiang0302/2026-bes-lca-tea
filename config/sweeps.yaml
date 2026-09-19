@@ -1,0 +1,38 @@
+# One-at-a-time sweeps from the ideal baseline. Each lever is varied alone.
+levers:
+  sandwich_thickness:
+    parameter: anode_thickness_m
+    label: "Sandwich thickness (anode side), mm"
+    grid: {type: log, start: 0.001, stop: 0.10, n: 61}
+    display_scale: 1000.0
+  stack_cost:
+    parameter: stack_cost_mult
+    label: "Stack cost, fraction of baseline"
+    grid: {type: lin, start: 1.0, stop: 0.0, n: 51}
+  membrane_cost:
+    parameter: membrane_cost_mult
+    label: "Membrane cost, fraction of baseline"
+    grid: {type: lin, start: 1.0, stop: 0.0, n: 51}
+  overpotential:
+    parameter: extra_overpotential_V
+    label: "Kinetic + pH loss, V"
+    grid: {type: lin, start: 0.0, stop: 1.0, n: 51}
+  coulombic_efficiency:
+    parameter: ce
+    label: "Cathodic Coulombic efficiency"
+    grid: {type: lin, start: 1.0, stop: 0.10, n: 46}
+  current_density:
+    parameter: j
+    label: "Areal current density, A/m2"
+    grid: {type: log, start: 10.0, stop: 0.10, n: 61}
+  catholyte_concentration:
+    parameter: catholyte_wt_pct
+    label: "Catholyte product concentration, wt%"
+    grid: {type: log, start: 0.1, stop: 30.0, n: 61}
+    phases: [liquid]
+  price:
+    parameter: price_mult
+    label: "Product price, multiple of market"
+    grid: {type: log, start: 0.5, stop: 10.0, n: 61}
+
+main_text_products: [hydrogen, methane, hydrogen_peroxide, formic_acid, acetic_acid, copper]

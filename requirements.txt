@@ -1,0 +1,7 @@
+# Packages needed to run the model (run_all.py). Exact versions used for the archived
+# release are in requirements.lock.
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+PyYAML>=6.0
+pytest>=8.0

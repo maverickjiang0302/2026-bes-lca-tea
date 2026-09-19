@@ -1,0 +1,13 @@
+group,parameter,value
+evaporation,mode,mee
+evaporation,mee_steam_MJ_per_kg_water,0.8
+evaporation,mee_electricity_kWh_per_kg_water,0.01
+evaporation,mvr_electricity_kWh_per_kg_water,0.035
+distillation,water_cp_kJ_per_kg_K,4.18
+acidification,h2so4_usd_per_kg,0.1
+acidification,h2so4_kg_co2e_per_kg,0.13
+acidification,note,sulfate by-product disposal not costed
+solid_metal,note,"harvesting, remelting/casting and refining charge; electricity for melting and electrorefining"
+gas,note,compression and purification; product loss = 1 - recovery
+capex,fixed_opex_fraction,0.03
+capex,embodied_gwp_kg_co2e_per_usd,0.0

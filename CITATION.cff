@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "2026-bes-lca-tea: coupled techno-economic and climate bound for commodity production in wastewater bioelectrochemical systems (model and data)"
+message: "If you use this model or these data, please cite the associated article and the archived release."
+type: software
+authors:
+  - family-names: Chen
+    given-names: Mingming
+    affiliation: "Department of Civil, Construction and Environmental Engineering, University of Alabama, Tuscaloosa, AL, USA"
+  - family-names: Khatami
+    given-names: Helia
+    affiliation: "Department of Civil, Construction and Environmental Engineering, University of Alabama, Tuscaloosa, AL, USA"
+  - family-names: Jiang
+    given-names: Daqian
+    affiliation: "Department of Civil, Construction and Environmental Engineering, University of Alabama, Tuscaloosa, AL, USA"
+    email: djiang6@ua.edu
+license: MIT
+repository-code: "https://github.com/maverickjiang0302/2026-bes-lca-tea"
+version: "1.0.0"
+date-released: "2026-09-19"
+keywords:
+  - bioelectrochemical systems
+  - microbial electrosynthesis
+  - techno-economic analysis
+  - life cycle assessment
+  - resource recovery
+  - wastewater

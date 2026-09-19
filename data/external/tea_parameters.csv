@@ -1,0 +1,24 @@
+parameter,value,unit,description,source,config_path
+discount_rate,0.1,"yr⁻¹ (real, pre-tax)",Discount rate at which all capital is levelized to an equivalent annual cost; the internal rate of return the project must earn,"Techno-economic convention for early-stage process assessment (10 % real; NREL design-report practice, e.g. Davis et al. 2014, NREL/TP-5100-62368)",plant.plant.discount_rate
+project_life_yr,20,yr,Project life over which capital is levelized; items with shorter lives are replaced (Table S3),Convention; matches the 20-year plant life of the companion study,plant.plant.project_life_yr
+capital_recovery_factor,0.1175,yr⁻¹,CRF = r(1+r)^n/((1+r)^n − 1) at r = 0.10 and n = 20; multiplies installed cost to give the annual capital charge,Derived from the two rows above,
+indirect_factor,0.5,—,"Installed cost = (1 + 0.50) × direct equipment cost: site work, engineering, contingency",Companion plant-scale study; within the 0.4–0.7 range for modular electrochemical equipment (Towler & Sinnott 2013),plant.plant.indirect_factor
+fixed_opex_fraction_of_tic,0.03,yr⁻¹,"Maintenance, insurance and overhead, as a fraction of installed cost",Towler & Sinnott 2013 (maintenance 3–5 % of installed cost per year),plant.plant.fixed_opex_fraction_of_tic
+replacement_install_factor,1.2,—,Replacement parts cost × 1.20 for labor and downtime at each end-of-life replacement,Assumption,plant.plant.replacement_install_factor
+operating_h_per_yr,8030,h yr⁻¹,Operating hours per year (92 % availability),Assumption for a continuously operated treatment plant,plant.plant.operating_h_per_yr
+electricity_usd_per_kWh,0.07,USD kWh⁻¹,"Price of grid electricity bought by the cell, the pumps and the downstream equipment; also the credit when the cell exports power","US EIA, Electric Power Annual 2024, Table 2.4, average retail price to industrial customers: 6.67 ¢ kWh⁻¹ (2020), 7.18 (2021), 8.32 (2022), 8.04 (2023), 8.13 (2024); 7 ¢ is the 2014–2021 level. Electricity is a few percent of the cost at the bound, so the choice does not change any sign",plant.energy.electricity_usd_per_kWh
+electricity_kg_co2e_per_kWh,0.610519719405792,kg CO₂e kWh⁻¹,"Climate burden of grid electricity, 2020 US-SERC; also the credit for exported power","ecoinvent 3.7 cut-off, market for electricity, low voltage, US-SERC (Table S7)",plant.energy.electricity_kg_co2e_per_kWh
+grid_scenario_2030,0.3,kg CO₂e kWh⁻¹,Mid-transition grid scenario,Round value between the 2020 grid and deep decarbonization,plant.energy.grid_scenarios.2030 mid-transition
+grid_scenario_2050,0.1,kg CO₂e kWh⁻¹,Deep-decarbonization grid scenario,Round value consistent with net-zero grid pathways,plant.energy.grid_scenarios.2050 deep decarbonization
+steam_usd_per_GJ,9.0,USD GJ⁻¹,Delivered low-pressure industrial steam for evaporation and distillation,Companion study basis (100 psig steam); typical US industrial range $6–12 GJ⁻¹ at 2022–2024 natural-gas prices ⚑,plant.energy.steam_usd_per_GJ
+steam_kg_co2e_per_MJ,0.11968022743032339,kg CO₂e MJ⁻¹,Climate burden of steam,"ecoinvent 3.7 cut-off, steam production, as energy carrier, in chemical industry (Table S7)",plant.energy.steam_kg_co2e_per_MJ
+rectifier_efficiency,0.95,—,AC→DC conversion when the cell consumes power,Typical industrial rectifier,plant.energy.rectifier_efficiency
+inverter_efficiency,0.9,—,DC→AC conversion when the cell exports power,Typical industrial inverter,plant.energy.inverter_efficiency
+feed_pumping_kWh_per_m3,0.02,kWh m⁻³,Feed pumping of wastewater through the stack,Typical low-lift pumping in municipal treatment,plant.plant.feed_pumping_kWh_per_m3
+treatment_credit_usd_per_m3,0.2,USD m⁻³,Optional credit: operating cost of the conventional secondary treatment the bioanode replaces (second break-even definition only),Indicative US value,plant.treatment_credit.usd_per_m3
+treatment_credit_kg_co2e_per_m3,0.35,kg CO₂e m⁻³,Optional credit: electricity and direct N₂O/CH₄ emissions of activated sludge,Indicative US value,plant.treatment_credit.kg_co2e_per_m3
+co2_handling_usd_per_t,30.0,USD t⁻¹,Handling of biogenic CO₂ from the anode off-gas or plant digester for the CO₂-derived products,Assumption (low-cost on-site biogenic CO₂; zero climate burden),plant.co2_feed.handling_usd_per_t
+dsp_fixed_opex_fraction,0.03,yr⁻¹,"Fixed operating cost of downstream equipment, fraction of installed cost",As for the stack,dsp.capex.fixed_opex_fraction
+ed_reference_installed_usd_per_m2,320,USD m⁻²,Installed cost of an electrodialysis stack per m² of membrane; the leanest plausible stack,McGovern et al. 2014 (main-text ref. 29) ⚑ single source,
+ed_reference_levelized_usd_per_m2_yr,54,USD m⁻² yr⁻¹,320 × (0.1175 + 0.05 operating allowance),Derived,
+currency_basis,"USD, nominal",—,Prices are 2024–2025 market values; no inflation adjustment is applied,—,

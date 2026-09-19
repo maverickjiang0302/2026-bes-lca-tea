@@ -1,0 +1,9 @@
+The configuration files (config/), input tables (data/external/) and generated
+results (results/) in this repository are licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0).
+
+https://creativecommons.org/licenses/by/4.0/
+
+Aggregated characterisation factors derived from the ecoinvent database are
+reported only as single numbers per flow, which is permitted under the ecoinvent
+licence; no ecoinvent datasets are redistributed.

@@ -1,0 +1,256 @@
+# Commodity products of bioelectrochemical reduction. One entry per product.
+# Cathode potentials are formal potentials at pH 7 (V vs SHE) unless noted; metal
+# potentials are for ~10 mM dissolved metal. Prices are 100 % basis; avoided GWP is
+# cradle-to-gate of the conventional route. `verified` flags which values were
+# traced to a primary source; the others are indicative market ranges and are swept.
+
+hydrogen:
+  label: Hydrogen
+  phase: gas
+  formula: H2
+  M_g_per_mol: 2.016
+  electrons: 2
+  half_reaction: "2 H+ + 2 e- -> H2"
+  E_cathode_V_SHE: -0.414
+  price_usd_per_kg: 2.00
+  avoided_gwp_kg_co2e_per_kg: 11.0
+  cathode_type: ss_mesh
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: gas, recovery: 0.90, electricity_kWh_per_kg: 2.0,
+        capex_ref_usd: 150000.0, capex_ref_capacity_kg_per_h: 4.17, capex_exponent: 0.7,
+        note: "compression to 30 bar + PSA to 99.97 %"}
+  realistic: {cathode_kinetic_V: 0.20, coulombic_efficiency: 0.80}
+  verified: {price: false, gwp: false}
+  source: "price: US industrial grey H2 gate price 2024, $1.5-2.5/kg; GWP: SMR 9-12 kg/kg (IEA 2019)"
+
+methane:
+  label: Methane
+  phase: gas
+  formula: CH4
+  M_g_per_mol: 16.043
+  electrons: 8
+  half_reaction: "CO2 + 8 H+ + 8 e- -> CH4 + 2 H2O"
+  E_cathode_V_SHE: -0.24
+  price_usd_per_kg: 0.25
+  avoided_gwp_kg_co2e_per_kg: 0.80
+  cathode_type: biocathode_felt
+  co2_kg_per_kg_product: 2.744
+  dsp: {route: gas, recovery: 0.97, electricity_kWh_per_kg: 0.56,
+        capex_ref_usd: 750000.0, capex_ref_capacity_kg_per_h: 179.0, capex_exponent: 0.7,
+        note: "biogas-upgrading class: 0.25 kWh/Nm3 raw + 0.15 kWh/Nm3 compression; $3000 per Nm3/h at 250 Nm3/h"}
+  realistic: {cathode_kinetic_V: 0.35, coulombic_efficiency: 0.80}
+  verified: {price: false, gwp: false}
+  source: "price: US industrial natural gas 2024, ~$3-5/MMBtu; GWP: natural gas supply incl. upstream methane"
+
+carbon_monoxide:
+  label: Carbon monoxide
+  phase: gas
+  formula: CO
+  M_g_per_mol: 28.010
+  electrons: 2
+  half_reaction: "CO2 + 2 H+ + 2 e- -> CO + H2O"
+  E_cathode_V_SHE: -0.52
+  price_usd_per_kg: 0.60
+  avoided_gwp_kg_co2e_per_kg: 1.60
+  cathode_type: gde_catalyst
+  co2_kg_per_kg_product: 1.571
+  dsp: {route: gas, recovery: 0.90, electricity_kWh_per_kg: 0.80,
+        capex_ref_usd: 225000.0, capex_ref_capacity_kg_per_h: 4.17, capex_exponent: 0.7,
+        note: "CO/CO2 separation (PSA or cryogenic) and compression"}
+  realistic: {cathode_kinetic_V: 0.50, coulombic_efficiency: 0.70}
+  verified: {price: false, gwp: false}
+  source: "price: merchant CO $0.5-1.0/kg; GWP: CO from syngas / partial oxidation"
+
+hydrogen_peroxide:
+  label: Hydrogen peroxide
+  phase: liquid
+  formula: H2O2
+  M_g_per_mol: 34.015
+  electrons: 2
+  half_reaction: "O2 + 2 H+ + 2 e- -> H2O2"
+  E_cathode_V_SHE: 0.281
+  price_usd_per_kg: 1.20
+  avoided_gwp_kg_co2e_per_kg: 1.46479885222015
+  cathode_type: gde_carbon
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: liquid_evaporation, recovery: 0.97, catholyte_wt_pct: 1.0, product_wt_pct: 35.0,
+        capex_ref_usd: 1500000.0, capex_ref_capacity_kg_water_per_h: 19000.0, capex_exponent: 0.6,
+        note: "vacuum multiple-effect evaporation to 35 % solution"}
+  realistic: {cathode_kinetic_V: 0.35, coulombic_efficiency: 0.70}
+  verified: {price: true, gwp: true}
+  source: "price: bulk industrial 100 % basis (companion study); GWP: ecoinvent 3.7 market for hydrogen peroxide, without water, in 50% solution state (reference flow = 1 kg H2O2 contained, i.e. 100 % basis)"
+
+formic_acid:
+  label: Formic acid
+  phase: liquid
+  formula: HCOOH
+  M_g_per_mol: 46.025
+  electrons: 2
+  half_reaction: "CO2 + 2 H+ + 2 e- -> HCOOH"
+  E_cathode_V_SHE: -0.43
+  price_usd_per_kg: 0.65
+  avoided_gwp_kg_co2e_per_kg: 2.50
+  cathode_type: gde_catalyst
+  co2_kg_per_kg_product: 0.956
+  dsp: {route: liquid_salt_acid, recovery: 0.95, catholyte_wt_pct: 1.5, intermediate_wt_pct: 30.0,
+        acid_kg_h2so4_per_kg: 1.065, final_distillation_MJ_per_kg: 4.0,
+        capex_ref_usd: 1500000.0, capex_ref_capacity_kg_water_per_h: 19000.0, capex_exponent: 0.6,
+        note: "formate salt: evaporate to 30 %, acidify with H2SO4, distil to 85 %"}
+  realistic: {cathode_kinetic_V: 0.60, coulombic_efficiency: 0.60}
+  verified: {price: false, gwp: false}
+  source: "price: formic acid 85 % $600-800/t; GWP: methyl formate hydrolysis route ~2.5 kg/kg"
+
+acetic_acid:
+  label: Acetic acid
+  phase: liquid
+  formula: CH3COOH
+  M_g_per_mol: 60.052
+  electrons: 8
+  half_reaction: "2 CO2 + 8 H+ + 8 e- -> CH3COOH + 2 H2O"
+  E_cathode_V_SHE: -0.28
+  price_usd_per_kg: 0.55
+  avoided_gwp_kg_co2e_per_kg: 1.60
+  cathode_type: biocathode_felt
+  co2_kg_per_kg_product: 1.466
+  dsp: {route: liquid_salt_acid, recovery: 0.95, catholyte_wt_pct: 1.2, intermediate_wt_pct: 30.0,
+        acid_kg_h2so4_per_kg: 0.816, final_distillation_MJ_per_kg: 3.0,
+        capex_ref_usd: 1500000.0, capex_ref_capacity_kg_water_per_h: 19000.0, capex_exponent: 0.6,
+        note: "acetate salt from microbial electrosynthesis: evaporate, acidify, distil to glacial"}
+  realistic: {cathode_kinetic_V: 0.40, coulombic_efficiency: 0.70}
+  verified: {price: false, gwp: false}
+  source: "price: acetic acid $500-600/t 2024; GWP: methanol carbonylation ~1.6 kg/kg"
+
+methanol:
+  label: Methanol
+  phase: liquid
+  formula: CH3OH
+  M_g_per_mol: 32.042
+  electrons: 6
+  half_reaction: "CO2 + 6 H+ + 6 e- -> CH3OH + H2O"
+  E_cathode_V_SHE: -0.38
+  price_usd_per_kg: 0.45
+  avoided_gwp_kg_co2e_per_kg: 0.80
+  cathode_type: gde_catalyst
+  co2_kg_per_kg_product: 1.373
+  dsp: {route: liquid_distillation, recovery: 0.97, catholyte_wt_pct: 1.0,
+        feed_heat_recovery: 0.70, feed_delta_T_K: 70.0, reboiler_MJ_per_kg: 3.5,
+        capex_ref_usd: 1000000.0, capex_ref_capacity_kg_feed_per_h: 20000.0, capex_exponent: 0.6,
+        note: "distillation of dilute aqueous methanol to 99.9 %"}
+  realistic: {cathode_kinetic_V: 0.70, coulombic_efficiency: 0.30}
+  verified: {price: false, gwp: false}
+  source: "price: methanol $400-500/t; GWP: natural-gas methanol ~0.7-0.9 kg/kg"
+
+ethanol:
+  label: Ethanol
+  phase: liquid
+  formula: C2H5OH
+  M_g_per_mol: 46.068
+  electrons: 12
+  half_reaction: "2 CO2 + 12 H+ + 12 e- -> C2H5OH + 3 H2O"
+  E_cathode_V_SHE: -0.31
+  price_usd_per_kg: 0.80
+  avoided_gwp_kg_co2e_per_kg: 1.40
+  cathode_type: biocathode_felt
+  co2_kg_per_kg_product: 1.911
+  dsp: {route: liquid_distillation, recovery: 0.97, catholyte_wt_pct: 1.0,
+        feed_heat_recovery: 0.70, feed_delta_T_K: 70.0, reboiler_MJ_per_kg: 5.0,
+        capex_ref_usd: 1000000.0, capex_ref_capacity_kg_feed_per_h: 20000.0, capex_exponent: 0.6,
+        note: "distillation and rectification to 95 %"}
+  realistic: {cathode_kinetic_V: 0.60, coulombic_efficiency: 0.30}
+  verified: {price: false, gwp: false}
+  source: "price: fuel ethanol $0.6-0.9/kg; GWP: ethylene hydration ~1.4 kg/kg"
+
+caustic_soda:
+  label: Caustic soda
+  phase: liquid
+  formula: NaOH
+  M_g_per_mol: 39.997
+  electrons: 1
+  half_reaction: "Na+ + H2O + e- -> NaOH + 1/2 H2   (cathode at pH 14)"
+  E_cathode_V_SHE: -0.828
+  price_usd_per_kg: 0.50
+  avoided_gwp_kg_co2e_per_kg: 1.10
+  cathode_type: ss_mesh
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: liquid_evaporation, recovery: 0.98, catholyte_wt_pct: 3.0, product_wt_pct: 50.0,
+        capex_ref_usd: 1500000.0, capex_ref_capacity_kg_water_per_h: 19000.0, capex_exponent: 0.6,
+        note: "multiple-effect evaporation to 50 % caustic"}
+  realistic: {cathode_kinetic_V: 0.25, coulombic_efficiency: 0.90}
+  verified: {price: false, gwp: false}
+  source: "price: caustic soda 100 % basis $400-600/t; GWP: chlor-alkali, mass allocation ~1.1 kg/kg"
+
+copper:
+  label: Copper
+  phase: solid
+  formula: Cu
+  M_g_per_mol: 63.546
+  electrons: 2
+  half_reaction: "Cu2+ + 2 e- -> Cu"
+  E_cathode_V_SHE: 0.28
+  price_usd_per_kg: 9.00
+  avoided_gwp_kg_co2e_per_kg: 3.30
+  cathode_type: metal_plate
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: solid_metal, recovery: 0.97, harvesting_usd_per_kg: 0.05, refining_charge_usd_per_kg: 0.20,
+        electricity_kWh_per_kg: 0.75, capex_ref_usd: 300000.0, capex_ref_capacity_kg_per_h: 100.0, capex_exponent: 0.6,
+        note: "cathode stripping, remelting/casting and refining charge for off-grade cathode"}
+  realistic: {cathode_kinetic_V: 0.10, coulombic_efficiency: 0.90}
+  verified: {price: false, gwp: false}
+  source: "price: LME copper 2024-2025 $8.5-9.5/kg; GWP: primary copper 3-4 kg/kg"
+
+nickel:
+  label: Nickel
+  phase: solid
+  formula: Ni
+  M_g_per_mol: 58.693
+  electrons: 2
+  half_reaction: "Ni2+ + 2 e- -> Ni"
+  E_cathode_V_SHE: -0.32
+  price_usd_per_kg: 16.0
+  avoided_gwp_kg_co2e_per_kg: 12.0
+  cathode_type: metal_plate
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: solid_metal, recovery: 0.97, harvesting_usd_per_kg: 0.05, refining_charge_usd_per_kg: 0.50,
+        electricity_kWh_per_kg: 0.75, capex_ref_usd: 300000.0, capex_ref_capacity_kg_per_h: 100.0, capex_exponent: 0.6,
+        note: "as copper"}
+  realistic: {cathode_kinetic_V: 0.35, coulombic_efficiency: 0.60}
+  verified: {price: false, gwp: false}
+  source: "price: LME nickel 2024-2025 $15-18/kg; GWP: class I nickel 10-14 kg/kg"
+
+zinc:
+  label: Zinc
+  phase: solid
+  formula: Zn
+  M_g_per_mol: 65.38
+  electrons: 2
+  half_reaction: "Zn2+ + 2 e- -> Zn"
+  E_cathode_V_SHE: -0.82
+  price_usd_per_kg: 2.80
+  avoided_gwp_kg_co2e_per_kg: 3.50
+  cathode_type: metal_plate
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: solid_metal, recovery: 0.97, harvesting_usd_per_kg: 0.05, refining_charge_usd_per_kg: 0.25,
+        electricity_kWh_per_kg: 0.75, capex_ref_usd: 300000.0, capex_ref_capacity_kg_per_h: 100.0, capex_exponent: 0.6,
+        note: "as copper"}
+  realistic: {cathode_kinetic_V: 0.20, coulombic_efficiency: 0.70}
+  verified: {price: false, gwp: false}
+  source: "price: LME zinc 2024-2025 $2.6-3.0/kg; GWP: primary zinc 3-4 kg/kg"
+
+lead:
+  label: Lead
+  phase: solid
+  formula: Pb
+  M_g_per_mol: 207.2
+  electrons: 2
+  half_reaction: "Pb2+ + 2 e- -> Pb"
+  E_cathode_V_SHE: -0.19
+  price_usd_per_kg: 2.10
+  avoided_gwp_kg_co2e_per_kg: 1.70
+  cathode_type: metal_plate
+  co2_kg_per_kg_product: 0.0
+  dsp: {route: solid_metal, recovery: 0.97, harvesting_usd_per_kg: 0.05, refining_charge_usd_per_kg: 0.15,
+        electricity_kWh_per_kg: 0.50, capex_ref_usd: 300000.0, capex_ref_capacity_kg_per_h: 100.0, capex_exponent: 0.6,
+        note: "as copper; lower melting energy"}
+  realistic: {cathode_kinetic_V: 0.15, coulombic_efficiency: 0.80}
+  verified: {price: false, gwp: false}
+  source: "price: LME lead 2024-2025 $1.9-2.2/kg; GWP: primary lead 1.3-2.0 kg/kg"

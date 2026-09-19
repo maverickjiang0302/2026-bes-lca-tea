@@ -1,0 +1,46 @@
+# Plant anchor, constants, financing and energy prices.
+# The analysis is normalised per m2 of membrane per year and per mol of electrons;
+# the plant only fixes the electron supply (and hence the stack area) and the
+# scale of downstream equipment.
+
+constants:
+  faraday_C_per_mol: 96485.0
+  g_bod_per_mol_e: 8.0            # 1 mol O2 (32 g) accepts 4 e-: 8 g BOD (as O2) per mol e-
+
+plant:
+  flow_m3_per_h: 100.0
+  bod_in_mg_per_L: 200.0
+  bod_removal: 0.85
+  anodic_coulombic_efficiency: 1.0   # ideal bound; realistic 0.1-0.6 (SI Section S6)
+  operating_h_per_yr: 8030.0
+  project_life_yr: 20
+  discount_rate: 0.10                # real, pre-tax; levelised (equivalent annual) costs
+  indirect_factor: 0.50              # installed cost = (1 + indirect_factor) x direct cost
+  fixed_opex_fraction_of_tic: 0.03   # maintenance, insurance, overhead
+  replacement_install_factor: 1.20   # replacement parts cost x this (labour, downtime)
+  feed_pumping_kWh_per_m3: 0.02
+
+energy:
+  electricity_usd_per_kWh: 0.07                    # US industrial average 2014-2021 (EIA Electric Power Annual Table 2.4: 6.7-7.2 c/kWh; 8.0-8.3 c/kWh in 2022-2024); sources in data/external/tea_parameters.csv
+  electricity_kg_co2e_per_kWh: 0.610519719405792   # ecoinvent 3.7, market for electricity, low voltage, US-SERC
+  grid_scenarios:                                   # kg CO2e per kWh
+    US-SERC 2020: 0.610519719405792
+    2030 mid-transition: 0.30
+    2050 deep decarbonization: 0.10
+  steam_usd_per_GJ: 9.0                             # delivered 100 psig industrial steam (companion study basis)
+  steam_kg_co2e_per_MJ: 0.11968022743032339        # ecoinvent 3.7, steam production in chemical industry
+  rectifier_efficiency: 0.95                       # AC -> DC when the cell consumes power
+  inverter_efficiency: 0.90                        # DC -> AC when the cell exports power
+
+# Every parameter below is listed with unit, description and source in data/external/tea_parameters.csv (SI Table S6).
+# Optional credit for the treatment service the bioanode performs (replaces
+# secondary treatment). OFF in the baseline break-even ("the commodity must
+# repay the stack"); ON in the second definition ("BES versus activated sludge").
+treatment_credit:
+  usd_per_m3: 0.20                  # O&M of conventional secondary treatment, indicative
+  kg_co2e_per_m3: 0.35              # electricity + direct N2O/CH4 of activated sludge, indicative
+  note: "Indicative US values; swept in SI Table S11."
+
+co2_feed:
+  handling_usd_per_t: 30.0          # capture/handling of biogenic CO2 from the anode off-gas or digester
+  kg_co2e_per_kg: 0.0               # biogenic

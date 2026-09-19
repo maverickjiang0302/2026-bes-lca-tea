@@ -1,0 +1,79 @@
+# Zero-gap ("sandwich") cell: flow channel | porous bioanode | cation-exchange
+# membrane | cathode | catholyte or gas. Three independent geometric variables:
+#   sandwich thickness  -> ohmic loss
+#   face velocity       -> boundary layer, hence the current-density ceiling
+#   chamber depth       -> hydraulic residence time and tank volume
+
+geometry:
+  anode_thickness_m: 0.001          # porous carbon felt/cloth carrying the biofilm on its flow-facing side
+  anode_porosity: 0.90
+  anode_tortuosity: 1.5
+  membrane_thickness_m: 0.00045
+  cathode_thickness_m: 0.001
+  chamber_depth_m: 0.09             # wastewater holding depth behind the flow channel
+  flow_channel_thickness_m: 0.005
+  flow_path_length_m: 3.0
+
+electrolyte:
+  wastewater_conductivity_S_per_m: 0.10     # ~1 mS/cm municipal wastewater
+  catholyte_conductivity_S_per_m: 5.0       # 0.5 M supporting electrolyte, closed loop
+
+membrane:
+  area_resistance_ohm_m2: 0.003             # 30 ohm cm2 for a heterogeneous CEM in dilute solution
+
+operation:
+  current_density_A_per_m2: 10.0            # ideal ceiling for a flat biofilm in buffered medium
+  current_density_realistic_A_per_m2: 1.0   # alkalinity-limited ceiling on municipal wastewater
+  anode_potential_V_SHE: -0.28              # acetate/HCO3- at pH 7; biofilm at zero kinetic loss
+  face_velocity_m_per_s: 0.15
+  water_kinematic_viscosity_m2_per_s: 1.0e-6
+  water_density_kg_per_m3: 1000.0
+  spacer_friction_multiplier: 4.0
+  pump_efficiency: 0.60
+
+losses:
+  ideal:
+    ph_gradient_V: 0.0
+    anode_kinetic_V: 0.0
+    cathode_kinetic_V: 0.0                  # product-specific realistic value in products.yaml
+  realistic:
+    ph_gradient_V: 0.20                     # ~3.4 pH units across a CEM carrying Na+/K+
+    anode_kinetic_V: 0.15
+    anode_thickness_m: 0.002
+
+# Bottom-up stack cost. Direct cost per m2 of membrane; installed = direct x (1 + indirect).
+# Masses and GWP factors give the embodied climate burden per m2.
+stack_items:
+  membrane_cem:
+    usd_per_m2: 100.0
+    life_yr: 5
+    kg_per_m2: 0.4725                       # 0.45 mm x 1050 kg/m3
+    gwp_kg_co2e_per_kg: 2.3219              # ecoinvent 3.7 polystyrene proxy (as in the companion LCA)
+    note: "heterogeneous CEM, e.g. CMI-7000 class"
+  anode_carbon_felt:
+    usd_per_m2: 40.0
+    life_yr: 10
+    kg_per_m2: 0.20                         # 2 mm-class felt at ~100 kg/m3, 1 mm used
+    gwp_kg_co2e_per_kg: 25.0                # PAN-based carbon fibre, literature range 20-31
+  frames_spacers_gaskets:
+    usd_per_m2: 80.0
+    life_yr: 20
+    kg_per_m2: 4.0
+    gwp_kg_co2e_per_kg: 2.3815              # ecoinvent 3.7 PVC
+  power_electronics:
+    usd_per_m2: 20.0
+    life_yr: 15
+    kg_per_m2: 0.10
+    gwp_kg_co2e_per_kg: 20.0
+  tanks_piping_pumps:
+    usd_per_m2: 50.0
+    life_yr: 20
+    kg_per_m2: 3.0
+    gwp_kg_co2e_per_kg: 1.90                # HDPE
+
+cathode_types:
+  ss_mesh:          {usd_per_m2: 50.0,  life_yr: 10, kg_per_m2: 1.0, gwp_kg_co2e_per_kg: 4.5,  note: "stainless steel / nickel mesh for hydrogen evolution"}
+  gde_carbon:       {usd_per_m2: 150.0, life_yr: 5,  kg_per_m2: 0.5, gwp_kg_co2e_per_kg: 30.0, note: "carbon-PTFE gas-diffusion electrode, O2 -> H2O2"}
+  gde_catalyst:     {usd_per_m2: 300.0, life_yr: 5,  kg_per_m2: 0.6, gwp_kg_co2e_per_kg: 40.0, note: "Sn/Bi or Ag catalysed GDE for CO2 reduction"}
+  biocathode_felt:  {usd_per_m2: 40.0,  life_yr: 10, kg_per_m2: 0.2, gwp_kg_co2e_per_kg: 25.0, note: "carbon felt biocathode (methanogens, acetogens)"}
+  metal_plate:      {usd_per_m2: 80.0,  life_yr: 20, kg_per_m2: 2.0, gwp_kg_co2e_per_kg: 5.0,  note: "stainless/titanium blank for electrodeposition, stripped periodically"}
