@@ -5,8 +5,8 @@ its theoretical ceiling, but commodity metals can: a coupled techno-economic and
 climate bound for bioelectrochemical reduction** (Chen, Khatami and Jiang, University
 of Alabama). Python package `bescl`.
 
-Repository: https://github.com/maverickjiang0302/2026-bes-lca-tea. Archived release:
-Zenodo (DOI in `CITATION.cff`).
+Repository: https://github.com/maverickjiang0302/2026-bes-lca-tea. Archived at Zenodo:
+concept DOI https://doi.org/10.5281/zenodo.22850937 (all versions); v1.0.0 https://doi.org/10.5281/zenodo.22850938.
 
 The question the code answers: *if a biofilm anode ran at its theoretical ceiling in
 an ideal zero-gap cell, could any commodity product repay the reactor and reduce

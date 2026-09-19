@@ -17,6 +17,14 @@ license: MIT
 repository-code: "https://github.com/maverickjiang0302/2026-bes-lca-tea"
 version: "1.0.0"
 date-released: "2026-09-19"
+doi: 10.5281/zenodo.22850937
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22850937
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22850938
+    description: "Version 1.0.0 (2026-09-19)"
 keywords:
   - bioelectrochemical systems
   - microbial electrosynthesis
