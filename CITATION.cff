@@ -28,6 +28,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.22860830
     description: "Version 1.0.1 (2026-09-20)"
+  - type: doi
+    value: 10.5281/zenodo.22861477
+    description: "Version 1.0.2 (2026-09-20)"
 keywords:
   - bioelectrochemical systems
   - microbial electrosynthesis
