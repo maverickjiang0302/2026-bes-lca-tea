@@ -63,3 +63,20 @@ def stack_totals(df: pd.DataFrame) -> dict[str, float]:
             "tic_usd_per_m2": float(df["tic_usd_per_m2"].sum()),
             "annual_usd_per_m2": float(df["annual_usd_per_m2"].sum()),
             "annual_gwp_kg_per_m2": float(df["annual_gwp_kg_per_m2"].sum())}
+
+def h2a_lumped_multiplier(cell: dict[str, Any], plant: dict[str, Any], cathode_type: str, area_m2: float) -> float:
+    """Total depreciable capital / uninstalled equipment cost implied by the H2A v3.2018
+    distributed-model defaults (plant['h2a_check']) for this stack at plant scale.
+
+    H2A multiplies uninstalled cost by an installation cost factor to get installed direct
+    capital, then adds site preparation and engineering (fixed sums), process and project
+    contingency (fractions of direct capital) and initial spares and pre-paid royalties
+    (fractions of the total, hence the division). The result is the cross-check behind the
+    single lumped ``indirect_factor``."""
+    h = plant["h2a_check"]
+    uninstalled = stack_totals(stack_annual(cell, plant, cathode_type))["direct_usd_per_m2"] * area_m2
+    direct = uninstalled * (1 + h["installation_fraction_of_uninstalled"])
+    total = (direct * (1 + h["process_contingency_fraction_of_direct"] + h["project_contingency_fraction_of_direct"])
+             + h["site_preparation_usd"] + h["engineering_design_usd"]) \
+        / (1 - h["initial_spares_fraction_of_total"] - h["prepaid_royalties_fraction_of_total"])
+    return total / uninstalled

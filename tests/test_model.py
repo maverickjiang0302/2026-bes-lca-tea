@@ -219,3 +219,15 @@ def test_literature_screen_agrees_with_model(cfg):
         row = ls.loc[key]
         assert row["ppe_usd_per_mol_e"] == pytest.approx(r["revenue_per_mol_e"] / r["dsp_recovery"], rel=1e-6)
         assert bool(row["clears_economic"]) == (p["phase"] == "solid"), key
+
+def test_h2a_cross_check_reproduces_the_lumped_multiplier(cfg):
+    """The single 1.5 installed/direct factor is a lumped installation + indirect capital factor; the H2A
+    v3.2018 distributed-model defaults must land within a few percent of it at this stack's plant-scale
+    uninstalled cost, for every cathode type (SI Section S3, Table S8)."""
+    p, cell = cfg["plant"]["plant"], cfg["cell"]
+    mol_e_per_m3 = p["bod_in_mg_per_L"] * p["bod_removal"] / cfg["plant"]["constants"]["g_bod_per_mol_e"] * p["anodic_coulombic_efficiency"]
+    area = p["flow_m3_per_h"] * mol_e_per_m3 * ec.FARADAY / 3600.0 / cell["operation"]["current_density_A_per_m2"]
+    mults = [st.h2a_lumped_multiplier(cell, cfg["plant"], ct, area) for ct in cell["cathode_types"]]
+    assert all(abs(m - (1 + p["indirect_factor"])) <= 0.07 for m in mults), mults
+    # the H2A layers are installation x (1 + contingencies) plus fixed sums: cheaper stacks get a larger multiplier
+    assert max(mults) - min(mults) < 0.1

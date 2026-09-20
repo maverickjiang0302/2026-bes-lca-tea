@@ -17,4 +17,4 @@ breakeven    required values of each lever at break-even (economic and climate)
 sweeps       one-at-a-time sweeps
 """
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"

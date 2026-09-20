@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from bescl import electrochem as ec  # noqa: E402
+from bescl import stack as st  # noqa: E402
 from bescl.config import TABLES_DIR, load_all, lookup  # noqa: E402
 
 EXTERNAL = ROOT / "data" / "external"
@@ -74,6 +75,13 @@ def main() -> int:
         "electricity_kg_co2e_per_mol_e_per_V": ec.FARADAY / 3.6e6 * cfg["plant"]["energy"]["electricity_kg_co2e_per_kWh"],
         "treatment_credit_usd_per_m2_yr": cfg["plant"]["treatment_credit"]["usd_per_m3"] * j * K / mol_e_per_m3,
     }
+    # cross-check of the lumped indirect_factor (installed = 1.5 x direct) against the H2A v3.2018
+    # distributed-model defaults applied to this stack's uninstalled cost at plant scale (config: plant.h2a_check)
+    plant_cfg, area = cfg["plant"], anchor["area_m2"]
+    uninstalled = {ct: st.stack_totals(st.stack_annual(cell, plant_cfg, ct))["direct_usd_per_m2"] * area for ct in cell["cathode_types"]}
+    h2a = {ct: st.h2a_lumped_multiplier(cell, plant_cfg, ct, area) for ct in cell["cathode_types"]}
+    anchor.update({"stack_uninstalled_usd_plant_min": min(uninstalled.values()), "stack_uninstalled_usd_plant_max": max(uninstalled.values()),
+                   "h2a_v3_distributed_multiplier_min": min(h2a.values()), "h2a_v3_distributed_multiplier_max": max(h2a.values())})
     # hand-curated source tables (SI Tables S6 and S7): every value that carries a config_path must equal the configuration
     for name, col in (("tea_parameters.csv", "value"), ("lca_datasets.csv", "gwp100_kg_co2e_per_unit")):
         df = pd.read_csv(EXTERNAL / name, dtype=str, keep_default_na=False)

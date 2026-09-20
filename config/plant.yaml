@@ -15,10 +15,26 @@ plant:
   operating_h_per_yr: 8030.0
   project_life_yr: 20
   discount_rate: 0.10                # real, pre-tax; levelised (equivalent annual) costs
-  indirect_factor: 0.50              # capital multiplier 1.5: installed = (1 + indirect_factor) x direct cost; H2A hydrogen production models (NLR), https://www.nlr.gov/hydrogen/h2a-production-models
+  indirect_factor: 0.50              # capital multiplier 1.5 = installed / direct equipment cost, ONE lumped factor for installation + indirect capital (not an installation factor alone); cross-checked against the H2A defaults in h2a_check below
   fixed_opex_fraction_of_tic: 0.03   # maintenance, insurance, overhead
   replacement_install_factor: 1.20   # replacement parts cost x this (labour, downtime)
   feed_pumping_kWh_per_m3: 0.02
+
+# Cross-check of the lumped 1.5 multiplier against the H2A Hydrogen Analysis Production Models
+# (National Laboratory of the Rockies, formerly NREL; https://www.nlr.gov/hydrogen/h2a-production-models):
+# version 3.2018 user guide (Penev, Saur, Hunter, Zuboy 2018), Appendix 2, Table 5, distributed-model
+# defaults derived from AACE International cost-estimating guidance for an Nth plant. H2A multiplies
+# uninstalled equipment cost by an installation cost factor and then adds indirect capital; the model
+# applies these to the stack's uninstalled cost at plant scale (bescl.stack.h2a_lumped_multiplier) and
+# reports total depreciable capital / uninstalled cost in results/tables/anchor_numbers.csv (SI Table S8).
+h2a_check:
+  installation_fraction_of_uninstalled: 0.17      # sales tax 5 %, shipping 1 %, insurance 1 %, setting 10 %
+  site_preparation_usd: 188000.0                  # AACE foundations + miscellaneous, 18.85 % of an average USD 1 M process
+  engineering_design_usd: 50000.0
+  process_contingency_fraction_of_direct: 0.0     # AACE 0-10 % for a commercial process; H2A uses 0 for an Nth plant
+  project_contingency_fraction_of_direct: 0.15    # AACE 15-30 %; low end for an Nth plant
+  initial_spares_fraction_of_total: 0.0075        # AACE 0.5-1.0 % of total capital cost
+  prepaid_royalties_fraction_of_total: 0.0075     # AACE 0.5-1.0 % of total project cost
 
 energy:
   electricity_usd_per_kWh: 0.07                    # US industrial average 2014-2021 (EIA Electric Power Annual Table 2.4: 6.7-7.2 c/kWh; 8.0-8.3 c/kWh in 2022-2024); sources in data/external/tea_parameters.csv

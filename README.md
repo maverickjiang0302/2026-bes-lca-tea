@@ -80,6 +80,12 @@ products reported in the bioelectrochemical and electrochemical literature.
 
 ## Version history
 
+- **v1.0.2 (2026-09-20).** The 1.5 capital multiplier is stated as what it is, one lumped factor for
+  installation plus indirect capital, and cross-checked against the H2A version 3.2018 distributed-model
+  defaults, which give 1.44–1.49 at this stack's equipment scale (`h2a_check` in `config/plant.yaml`,
+  `bescl.stack.h2a_lumped_multiplier`, new rows in `results/tables/anchor_numbers.csv` and
+  `data/external/tea_parameters.csv`). No model result changed.
+
 - **v1.0.1 (2026-09-20).** The 1.5 capital multiplier (installed cost = 1.5 × direct equipment
   cost, `plant.indirect_factor: 0.50`) is now sourced to the H2A Hydrogen Analysis Production
   Models of the National Laboratory of the Rockies (https://www.nlr.gov/hydrogen/h2a-production-models)
