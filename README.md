@@ -78,6 +78,14 @@ the margin is linear and by bracketed root-finding otherwise. The literature scr
 applies the same stack, electricity, pumping and downstream-class constants to 40
 products reported in the bioelectrochemical and electrochemical literature.
 
+## Version history
+
+- **v1.0.1 (2026-09-20).** The 1.5 capital multiplier (installed cost = 1.5 × direct equipment
+  cost, `plant.indirect_factor: 0.50`) is now sourced to the H2A Hydrogen Analysis Production
+  Models of the National Laboratory of the Rockies (https://www.nlr.gov/hydrogen/h2a-production-models)
+  in `data/external/tea_parameters.csv` and `config/plant.yaml`. No numerical result changed.
+- **v1.0.0 (2026-09-19).** First archived release.
+
 ## Licenses
 
 Code: MIT (`LICENSE`). Configuration, input tables and results: CC BY 4.0

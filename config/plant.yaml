@@ -15,7 +15,7 @@ plant:
   operating_h_per_yr: 8030.0
   project_life_yr: 20
   discount_rate: 0.10                # real, pre-tax; levelised (equivalent annual) costs
-  indirect_factor: 0.50              # installed cost = (1 + indirect_factor) x direct cost
+  indirect_factor: 0.50              # capital multiplier 1.5: installed = (1 + indirect_factor) x direct cost; H2A hydrogen production models (NLR), https://www.nlr.gov/hydrogen/h2a-production-models
   fixed_opex_fraction_of_tic: 0.03   # maintenance, insurance, overhead
   replacement_install_factor: 1.20   # replacement parts cost x this (labour, downtime)
   feed_pumping_kWh_per_m3: 0.02

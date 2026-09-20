@@ -15,8 +15,8 @@ authors:
     email: djiang6@ua.edu
 license: MIT
 repository-code: "https://github.com/maverickjiang0302/2026-bes-lca-tea"
-version: "1.0.0"
-date-released: "2026-09-19"
+version: "1.0.1"
+date-released: "2026-09-20"
 doi: 10.5281/zenodo.22850937
 identifiers:
   - type: doi
