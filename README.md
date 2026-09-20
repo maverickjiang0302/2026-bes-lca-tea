@@ -6,7 +6,7 @@ climate bound for bioelectrochemical reduction** (Chen, Khatami and Jiang, Unive
 of Alabama). Python package `bescl`.
 
 Repository: https://github.com/maverickjiang0302/2026-bes-lca-tea. Archived at Zenodo:
-concept DOI https://doi.org/10.5281/zenodo.22850937 (all versions); v1.0.0 https://doi.org/10.5281/zenodo.22850938.
+concept DOI https://doi.org/10.5281/zenodo.22850937 (all versions); v1.0.1 https://doi.org/10.5281/zenodo.22860830; v1.0.0 https://doi.org/10.5281/zenodo.22850938.
 
 The question the code answers: *if a biofilm anode ran at its theoretical ceiling in
 an ideal zero-gap cell, could any commodity product repay the reactor and reduce
@@ -83,7 +83,7 @@ products reported in the bioelectrochemical and electrochemical literature.
 - **v1.0.1 (2026-09-20).** The 1.5 capital multiplier (installed cost = 1.5 × direct equipment
   cost, `plant.indirect_factor: 0.50`) is now sourced to the H2A Hydrogen Analysis Production
   Models of the National Laboratory of the Rockies (https://www.nlr.gov/hydrogen/h2a-production-models)
-  in `data/external/tea_parameters.csv` and `config/plant.yaml`. No numerical result changed.
+  in `data/external/tea_parameters.csv` and `config/plant.yaml`. No numerical result changed. DOI 10.5281/zenodo.22860830.
 - **v1.0.0 (2026-09-19).** First archived release.
 
 ## Licenses
